@@ -1,0 +1,165 @@
+@charset "UTF-8";
+
+:root {
+  --font-monumental: 'Cinzel', serif;
+  --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'Space Grotesk', ui-monospace, monospace;
+
+  --bg-deep: #07080d;
+  --bg-surface: #0f111a;
+  --bg-card: #151824;
+  --bg-card-glass: rgba(21, 24, 36, 0.75);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-active: rgba(0, 229, 255, 0.3);
+
+  --accent-cyan: #00e5ff;
+  --accent-cyan-hover: #38bdf8;
+  --accent-gold: #d4af37;
+  --accent-gold-light: #fef08a;
+  --accent-emerald: #22c55e;
+  --accent-emerald-light: #86efac;
+
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+
+  --shadow-glow: 0 0 25px rgba(0, 229, 255, 0.2);
+  --shadow-card: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+  background-color: var(--bg-deep);
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-deep);
+  color: var(--text-primary);
+  min-height: 100vh;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography Helpers */
+.font-monumental {
+  font-family: var(--font-monumental);
+  letter-spacing: 0.05em;
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+/* Glassmorphism & Accents */
+.glass-panel {
+  background: rgba(18, 21, 32, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-subtle);
+}
+
+.glass-card {
+  background: linear-gradient(135deg, rgba(24, 28, 42, 0.85) 0%, rgba(15, 17, 26, 0.95) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.cyan-glow {
+  box-shadow: 0 0 30px rgba(0, 229, 255, 0.25);
+}
+
+.gold-glow {
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.25);
+}
+
+/* Cosmic Background Grid */
+.cosmic-grid-bg {
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(0, 229, 255, 0.04) 0%, transparent 60%),
+    radial-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+  background-size: 100% 100%, 48px 48px;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #090a10;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #252b3d;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-cyan);
+}
+
+/* Animations */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.2), inset 0 0 15px rgba(0, 229, 255, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(0, 229, 255, 0.45), inset 0 0 25px rgba(0, 229, 255, 0.2);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 3.5s infinite ease-in-out;
+}
+
+@keyframes orbitRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-orbit {
+  animation: orbitRotate 60s linear infinite;
+}
+
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-float {
+  animation: floatSlow 4s ease-in-out infinite;
+}
+
+/* Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
